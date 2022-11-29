@@ -7,14 +7,14 @@ const mongoose = require ("mongoose")
 
 const cors = require('cors');
 
-
+app.use(cors());
 const app = express();
 
 const algo = "hola";
 
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+
 
 app.get('/', function (req, res) {
     res.send("hola mundo");
