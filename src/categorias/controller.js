@@ -1,8 +1,7 @@
 const modeloController = require('./model')
-const tareasModeloController = require('../tareas/model')
 
 function traerCategorias(req, res){
-    modeloController.find({}).then(response =>{
+    modeloController.find({$or: [{ usuario : { $exists : false}}, {usuario : req.id}]}).then(response =>{
         console.log('Respuesta: ', response)
         res.send(response);
     }
@@ -22,7 +21,9 @@ function crearCategoria(req,res){
 
     const obj = {
         color: color,
-        descripcion : descripcion
+        descripcion : descripcion,
+        activo: true,
+        usuario: req.id
     }
 
     modeloController.create(obj).then(response =>{

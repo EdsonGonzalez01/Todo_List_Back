@@ -2,6 +2,9 @@ const modeloController = require('./model')
 var mongoose = require('mongoose');
 
 function traerTarea(req, res){
+    const idUser = req.id;
+    console.log("Usuario: ")
+    console.log(idUser);
     const pending= req.query.pending;
     const boolPending = pending === "true" ? true : false;
     
@@ -9,7 +12,7 @@ function traerTarea(req, res){
         res.send("solo tareas pendientes")
     }
     else{
-        modeloController.find({prioridad : {$ne:"Completed"}}).then(response =>{
+        modeloController.find({prioridad : {$ne:"Completed"}, user : req.id}).then(response =>{
             console.log('Respuesta: ', response)
             res.send(response);
         }
@@ -20,7 +23,9 @@ function traerTarea(req, res){
 function traerTareaporCategoria(req, res){
     const prioridad = req.params.prioridad;
     console.log('Recibi: ' + prioridad);
-    modeloController.find({prioridad: prioridad}).then(response =>{
+    modeloController.find({prioridad: prioridad, user : req.id
+    .$ne
+}).then(response =>{
         console.log('Respuesta: ', response)
         res.send(response);
     }
@@ -49,13 +54,15 @@ function crearUnaTarea(req,res){
     const prioridad = req.body.prioridad;
     const fecha_inicio = req.body.fecha_inicio;
     const fecha_fin = req.body.fecha_fin;
+    const user = req.id;
 
     const obj = {
         descripcion : descripcion,
         prioridad : prioridad,
         observacion : observacion,
         fecha_inicio :fecha_inicio,
-        fecha_fin : fecha_fin
+        fecha_fin : fecha_fin,
+        user: user
     }
 
     modeloController.create(obj).then(response =>{

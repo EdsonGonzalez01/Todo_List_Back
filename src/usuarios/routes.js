@@ -5,9 +5,10 @@ const authMiddelware = require('../middlewares/auth');
 
 //rutas
 
-router.get('/', authMiddelware, controlador.traerUsuarios)
-router.get('/:id', authMiddelware,  controlador.traerUnUsuario);
-router.post('/create', authMiddelware, controlador.crearUnUsuario);
+router.get('/all', authMiddelware, controlador.traerUsuarios)
+router.post('/', authMiddelware,  controlador.traerUnUsuario);
+router.post('/login',  controlador.iniciarSesion);
+router.post('/create', controlador.crearUnUsuario);
 router.put('/update', authMiddelware,  controlador.actualizarUnUsuario);
 router.delete('/delete', authMiddelware,  controlador.eliminarUnUsuario);
 

@@ -3,12 +3,6 @@ const {Schema, model }=require('mongoose');
 const schema=new Schema
 (
     {
-        id: {
-            type:String
-        },
-        nombre: {
-            type:String
-        },
         correo: {
             type:String
         },
@@ -16,6 +10,7 @@ const schema=new Schema
             type:String
         }
 
-    });
+    }
+);
 
-module.exports = model('usuario',schema );
+module.exports = model('usuarios', schema)

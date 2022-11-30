@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const { Schema, model } = require ("mongoose")
 
 const schema = new Schema({
@@ -15,6 +16,9 @@ const schema = new Schema({
     },
     fecha_fin: {
         type:Date
+    },
+    user:{
+        type:ObjectId
     }
 });
 

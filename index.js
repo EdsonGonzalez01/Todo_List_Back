@@ -4,7 +4,7 @@ const tareasRoutes = require('./src/tareas/routes');
 const comentariosRoutes = require('./src/comentarios/routes');
 const categoriasRoutes = require('./src/categorias/routes');
 const mongoose = require ("mongoose")
-
+require('dotenv').config();
 const cors = require('cors');
 
 
