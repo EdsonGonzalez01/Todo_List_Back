@@ -23,9 +23,8 @@ function traerTarea(req, res){
 function traerTareaporCategoria(req, res){
     const prioridad = req.params.prioridad;
     console.log('Recibi: ' + prioridad);
-    modeloController.find({prioridad: prioridad, user : req.id
-    .$ne
-}).then(response =>{
+    modeloController.find({prioridad: prioridad, user : req.id})
+    .then(response =>{
         console.log('Respuesta: ', response)
         res.send(response);
     }
