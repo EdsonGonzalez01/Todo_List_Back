@@ -7,8 +7,10 @@ const mongoose = require ("mongoose")
 
 const cors = require('cors');
 
-app.use(cors());
+
 const app = express();
+
+app.use(cors());
 
 const algo = "hola";
 
